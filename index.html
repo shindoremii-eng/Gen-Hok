@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔒 GEN HOOK BYPASS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        :root {
+            --primary: #2196F3;
+            --primary-dark: #1976D2;
+            --accent: #03A9F4;
+            --success: #4CAF50;
+            --error: #F44336;
+            --bg-light: #f5f7fa;
+            --bg-white: #ffffff;
+            --text-dark: #212121;
+            --text-light: #757575;
+            --border: #e0e0e0;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --radius: 12px;
+        }
+
+        body {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: var(--bg-white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.3;
+        }
+
+        .logo {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            animation: pulse 2s infinite;
+        }
+
+        .title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .section {
+            background: var(--bg-light);
+            border-radius: var(--radius);
+            padding: 25px;
+            margin-bottom: 25px;
+            border-left: 5px solid var(--primary);
+        }
+
+        .section-title {
+            color: var(--primary-dark);
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: var(--primary);
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-label {
+            display: block;
+            color: var(--text-dark);
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+        }
+
+        .input-field::placeholder {
+            color: #aaa;
+        }
+
+        .toggle-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .toggle-btn {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .toggle-btn.true {
+            background: var(--success);
+            color: white;
+        }
+
+        .toggle-btn.false {
+            background: var(--error);
+            color: white;
+        }
+
+        .toggle-btn.active {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .toggle-btn:hover:not(.active) {
+            opacity: 0.9;
+        }
+
+        .select-field {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%232196F3' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 18px center;
+            background-size: 16px;
+        }
+
+        .select-field:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+        }
+
+        .generate-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 30px 0;
+            box-shadow: 0 6px 20px rgba(33, 150, 243, 0.3);
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(33, 150, 243, 0.4);
+        }
+
+        .generate-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .code-container {
+            background: #1e1e1e;
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-top: 25px;
+        }
+
+        .code-header {
+            background: #2d2d2d;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #404040;
+        }
+
+        .code-title {
+            color: #e0e0e0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .copy-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .copy-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .copy-btn.copied {
+            background: var(--success);
+        }
+
+        .code-content {
+            padding: 25px;
+            overflow-x: auto;
+            max-height: 400px;
+        }
+
+        .code {
+            color: #d4d4d4;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            margin: 0;
+        }
+
+        .code-keyword {
+            color: #569cd6;
+        }
+
+        .code-string {
+            color: #ce9178;
+        }
+
+        .code-comment {
+            color: #6a9955;
+        }
+
+        .code-function {
+            color: #dcdcaa;
+        }
+
+        .code-type {
+            color: #4ec9b0;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--success);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast.error {
+            background: var(--error);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .title {
+                font-size: 1.8rem;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .toggle-group {
+                flex-direction: column;
+            }
+            
+            .toast {
+                left: 20px;
+                right: 20px;
+                bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">⚡</div>
+            <h1 class="title">SHINDOREMI</h1>
+            <p class="subtitle">HOOK + BYPASS GEN</p>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h2 class="section-title"><i class="fas fa-code"></i> Target Information</h2>
+                
+                <div class="input-group">
+                    <label class="input-label">BypassLogo</label>
+                    <input type="text" id="dllName" class="input-field" placeholder="Assembly-CSharp.dll" value="Assembly-CSharp.dll">
+                </div>
+                
+                <div class="input-group">
+                    <label class="input-label">BypassLobby</label>
+                    <input type="text" id="namespace" class="input-field" placeholder="GCommon" value="GCommon">
+                </div>
+                
+                <div class="input-group">
+                    <label class="input-label">On-Of Fitures</label>
+                    <input type="text" id="className" class="input-field" placeholder="PlatformUtility" value="PlatformUtility">
+                </div>
+                
+                <div class="input-group">
+                    <label class="input-label">Method Value enc</label>
+                    <input type="text" id="methodName" class="input-field" placeholder="IsVPN" value="IsVPN">
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title"><i class="fas fa-toggle-on"></i> Return Value</h2>
+                <div class="toggle-group">
+                    <button id="trueBtn" class="toggle-btn true active">
+                        <i class="fas fa-check-circle"></i> TRUE
+                    </button>
+                    <button id="falseBtn" class="toggle-btn false">
+                        <i class="fas fa-times-circle"></i> FALSE
+                    </button>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title"><i class="fas fa-cogs"></i> Patch Type</h2>
+                <select id="patchType" class="select-field">
+                    <option value="memory">Memory Patch Il2Cpp</option>
+                    <option value="dobby">Dobby Hook</option>
+                </select>
+            </div>
+
+            <button id="generateBtn" class="generate-btn">
+                <i class="fas fa-bolt"></i> GENERATE PATCH CODE
+            </button>
+
+            <div id="codeSection" style="display: none;">
+                <div class="code-container">
+                    <div class="code-header">
+                        <div class="code-title">
+                            <i class="fas fa-file-code"></i> Generated Bypass Demo
+                        </div>
+                        <button id="copyBtn" class="copy-btn">
+                            <i class="fas fa-copy"></i> Copy Code
+                        </button>
+                    </div>
+                    <div class="code-content">
+                        <pre id="codeOutput" class="code"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><i class="fas fa-shield-alt"></i> Perfect Gen • DRMSHIN • Works Good</p>
+        </div>
+    </div>
+
+    <div id="toast" class="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Code copied to clipboard!</span>
+    </div>
+
+    <script>
+        // Configuration
+        const hexOptions = {
+            trueHex: "00 00 80 D2 C0 03 5F D6",
+            falseHex: "00 00 A0 D2 C0 03 5F D6"
+        };
+
+        // DOM Elements
+        const dllNameInput = document.getElementById('dllName');
+        const namespaceInput = document.getElementById('namespace');
+        const classNameInput = document.getElementById('className');
+        const methodNameInput = document.getElementById('methodName');
+        const trueBtn = document.getElementById('trueBtn');
+        const falseBtn = document.getElementById('falseBtn');
+        const patchTypeSelect = document.getElementById('patchType');
+        const generateBtn = document.getElementById('generateBtn');
+        const codeSection = document.getElementById('codeSection');
+        const codeOutput = document.getElementById('codeOutput');
+        const copyBtn = document.getElementById('copyBtn');
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toastMessage');
+
+        // State
+        let returnValue = true;
+
+        // Initialize
+        function init() {
+            // Set up toggle buttons
+            trueBtn.addEventListener('click', () => setReturnValue(true));
+            falseBtn.addEventListener('click', () => setReturnValue(false));
+            
+            // Set up generate button
+            generateBtn.addEventListener('click', generateCode);
+            
+            // Set up copy button
+            copyBtn.addEventListener('click', copyCode);
+        }
+
+        // Set return value
+        function setReturnValue(value) {
+            returnValue = value;
+            if (value) {
+                trueBtn.classList.add('active');
+                falseBtn.classList.remove('active');
+            } else {
+                falseBtn.classList.add('active');
+                trueBtn.classList.remove('active');
+            }
+        }
+
+        // Generate code
+        function generateCode() {
+            // Get values
+            const dll = dllNameInput.value.trim() || 'Assembly-CSharp.dll';
+            const namespace = namespaceInput.value.trim() || 'GCommon';
+            const className = classNameInput.value.trim() || 'PlatformUtility';
+            const methodName = methodNameInput.value.trim() || 'IsVPN';
+            const patchType = patchTypeSelect.value;
+            const hexValue = returnValue ? hexOptions.trueHex : hexOptions.falseHex;
+            const returnStr = returnValue ? 'true' : 'false';
+
+            // Generate code based on patch type
+            let code = '';
+            
+            if (patchType === 'memory') {
+                code = `// DRMSHIN - Generated Memory Patch
+// DLL: ${dll}
+// Namespace: ${namespace}
+// Class: ${className}
+// Method: ${methodName}
+// Returns: ${returnStr.toUpperCase()}
+// Generated: ${new Date().toLocaleString()}
+
+<span class="code-keyword">#include</span> &lt;MemoryPatch.hpp&gt;
+
+MemoryPatch::createWithHex(
+    (uintptr_t)Il2CppGetMethodOffset(
+        <span class="code-string">OBFUSCATE("${dll}")</span>,
+        <span class="code-string">OBFUSCATE("${namespace}")</span>,
+        <span class="code-string">OBFUSCATE("${className}")</span>,
+        <span class="code-string">OBFUSCATE("${methodName}")</span>,
+        0
+    ),
+    <span class="code-string">OBFUSCATE("${hexValue}")</span>
+).Modify();
+
+<span class="code-comment">// End of secure patch</span>`;
+            } else {
+                code = `// ZARU MODZ - Generated Dobby Hook
+// DLL: ${dll}
+// Namespace: ${namespace}
+// Class: ${className}
+// Method: ${methodName}
+// Returns: ${returnStr.toUpperCase()}
+// Generated: ${new Date().toLocaleString()}
+
+<span class="code-keyword">#include</span> &lt;dobby.h&gt;
+
+<span class="code-keyword">static</span> <span class="code-type">bool</span> (*<span class="code-function">orig_${className}_${methodName}</span>)(<span class="code-type">void</span>* self);
+<span class="code-keyword">static</span> <span class="code-type">bool</span> <span class="code-function">hook_${className}_${methodName}</span>(<span class="code-type">void</span>* self) {
+    <span class="code-comment">// Custom logic here</span>
+    <span class="code-keyword">return</span> ${returnStr};
+}
+
+<span class="code-type">void</span> <span class="code-function">ApplyHook</span>() {
+    <span class="code-type">void</span>* target_addr = (<span class="code-type">void</span>*)Il2CppGetMethodOffset(
+        <span class="code-string">OBFUSCATE("${dll}")</span>,
+        <span class="code-string">OBFUSCATE("${namespace}")</span>,
+        <span class="code-string">OBFUSCATE("${className}")</span>,
+        <span class="code-string">OBFUSCATE("${methodName}")</span>,
+        0
+    );
+    
+    <span class="code-keyword">if</span> (target_addr) {
+        DobbyHook(
+            target_addr,
+            (<span class="code-type">void</span>*)<span class="code-function">hook_${className}_${methodName}</span>,
+            (<span class="code-type">void</span>**)&<span class="code-function">orig_${className}_${methodName}</span>
+        );
+    }
+}
+
+<span class="code-comment">// End of secure hook</span>`;
+            }
+
+            // Display code
+            codeOutput.innerHTML = code;
+            codeSection.style.display = 'block';
+            
+            // Scroll to code
+            setTimeout(() => {
+                codeSection.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+
+            // Show success message
+            showToast('Patch code generated successfully!');
+        }
+
+        // Copy code to clipboard
+        function copyCode() {
+            const text = codeOutput.textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                copyBtn.classList.add('copied');
+                copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                showToast('Code copied to clipboard!');
+                
+                setTimeout(() => {
+                    copyBtn.classList.remove('copied');
+                    copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy Code';
+                }, 2000);
+            }).catch(err => {
+                showToast('Failed to copy code!', true);
+            });
+        }
+
+        // Show toast notification
+        function showToast(message, isError = false) {
+            toastMessage.textContent = message;
+            
+            if (isError) {
+                toast.classList.add('error');
+            } else {
+                toast.classList.remove('error');
+            }
+            
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', init);
+
+        // Add some visual effects
+        generateBtn.addEventListener('mousedown', () => {
+            generateBtn.style.transform = 'translateY(-1px)';
+        });
+
+        generateBtn.addEventListener('mouseup', () => {
+            generateBtn.style.transform = 'translateY(-3px)';
+        });
+
+        generateBtn.addEventListener('mouseleave', () => {
+            generateBtn.style.transform = 'translateY(0)';
+        });
+    </script>
+</body>
+</html>
